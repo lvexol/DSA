@@ -59,6 +59,83 @@ struct node* insertion(node* head,int da){
     }
     return head;
 }
+struct node* del_beging (struct node* head){
+    struct node* temp=NULL;
+    temp=new node;
+    temp=head;
+    head=head->next;
+    free(temp);
+    return head;
+}
+void del_ending(struct node* head){
+    struct node* temp=NULL;
+    temp=new node;
+    temp=head;
+    while(temp->next!=NULL)
+        temp=temp->next;
+    struct node* prev=NULL;
+    prev=new node;
+    prev=head;
+    while(prev->next=temp)
+        prev=prev->next;
+    prev->next=NULL;
+    free(temp);
+}
+void del_middle(struct node* head){
+    int n;
+    cout<<"enter the place to be deleted";
+    cin>>n;
+    struct node* temp=NULL;
+    temp=new node;
+    temp=head;
+    for(int i=0;i<n;i++)
+        temp=temp->next;
+    struct node* prev=NULL;
+    prev=new node;
+    prev=head;
+    while(prev->next != temp)
+        prev=prev->next;
+    prev->next=temp->next;
+    free(temp);
+}
+void del_value(struct node* head){
+    int val;
+    cout<<"enter the value to be deleted";
+    cin>>val;
+    struct node* prev=NULL;
+    prev=new node;
+    prev=head;
+    while(head->next != val)
+        head=head->next;
+    while(prev->next!=head) 
+        prev=prev->next;
+    prev->next=head->next;
+    free(head);
+}
+struct node* deletion(node* head){
+    while(true){
+    cout<<"select the postion to be deleted\n 1.begining\n 2.ending\n 3.middle\n 4.value based\n 5.exit"<<endl;
+    int type;
+    cin>>type;
+    switch(type){
+        case 1:
+        head=del_beging(head);
+        break;
+        case 2:
+        del_ending(head);
+        break;
+        case 3:
+        del_middle(head);
+        break;
+        case 4:
+        del_value(head);
+        break;
+        case 5:
+        return head;
+        break;
+    }
+    }
+}
 void print(struct node* head){
     struct node* temp=NULL;
     temp=new node;
@@ -87,6 +164,29 @@ int main(){
         cin>>dat;
         insertion(head,dat);
     }
-    print(head);
+    int val;
+    
+    while(true){
+        cout<<"enter the process to be dont"<<endl;
+        cout<<"1.insert the data\n2.delet element\n3.print data\n4.exit"<<endl;
+        cin>>val;
+        switch(val){
+            case 1:
+            int dat;
+            cout<<"enter the data"<<endl;
+            cin>>dat;
+            head=insertion(head,dat);
+            break;
+            case 2:
+            deletion(head);
+            break;
+            case 3:
+            print(head);
+            break;
+            case 4:
+            return 0;
+            break;
+        }
+    }
 
 }
