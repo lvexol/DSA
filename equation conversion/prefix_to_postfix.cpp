@@ -52,5 +52,6 @@ int main()
 			s.push(string(1, exp[i]));
 		}
 	}
+    cout<<s.top();
 	return 0;
 }
