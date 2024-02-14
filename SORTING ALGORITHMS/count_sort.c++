@@ -4,7 +4,11 @@ using namespace std;
 
 void count_sort(int arr[], int n) 
 { 
-	int k = *max_element(arr, arr + n); 
+	int k=arr[0];
+	for(int i=0;i<n;i++){
+		if(k<arr[i])
+			k=arr[i];
+	}
 
 	int count[k + 1] = { 0 }; 
 
@@ -15,7 +19,7 @@ void count_sort(int arr[], int n)
 		count[i] = count[i] + count[i - 1]; 
 	} 
 	int ans[n]; 
-	for (int i = n - 1; i >= 0; i--) { 
+	for (int i = 0; i <n; i++) { 
 		ans[--count[arr[i]]] = arr[i]; 
 	} 
 	for (int i = 0; i < n; i++) { 
@@ -24,7 +28,7 @@ void count_sort(int arr[], int n)
 } 
 int main() 
 { 
-	int arr[] = { 1, 3, 7, 0, 1, 1, 6, 3, 0, 3 }; 
+	int arr[] = { 1,5,3,7,3,7,7,8,9,7,8,3,9,0 }; 
 	int n = sizeof(arr) / sizeof(arr[0]); 
 	count_sort(arr, n); 
 	cout << "Array after performing count sort : " << endl; 
