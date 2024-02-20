@@ -24,6 +24,7 @@ int main(){
     int a,b;
     cout<<endl;
     for(int i=1; i<c+1; i++){
+        //buble sort is used here
         for(int j=0; j<n-1; j++){
             for(int k=0; k<n-j-1; k++){
                 a=(arr[k]%int(pow(10,i)))/(int(pow(10,i-1)));
@@ -35,6 +36,7 @@ int main(){
                 }
             }
         }
+
     }
     for(int i=0;i<n;i++){
         cout<<arr[i]<<endl;
