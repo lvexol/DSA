@@ -25,8 +25,8 @@ int main(){
     cout<<endl;
     for(int i=1; i<c+1; i++){
         //buble sort is used here
-        for(int j=0; j<n-1; j++){
-            for(int k=0; k<n-j-1; k++){
+        for(int j=0; j<n; j++){
+            for(int k=j; k<n-1; k++){
                 a=(arr[k]%int(pow(10,i)))/(int(pow(10,i-1)));
                 b=(arr[k+1]%int(pow(10,i)))/(int(pow(10,i-1)));
                 if(a>b){
