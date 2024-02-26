@@ -3,7 +3,6 @@
 /* Function to merge the subarrays of a[] */  
 void merge(int a[], int beg, int mid, int end)    
 {    
-    int i, j, k;  
     int n1 = mid - beg + 1;    
     int n2 = end - mid;    
       
@@ -15,9 +14,9 @@ void merge(int a[], int beg, int mid, int end)
     for (int j = 0; j < n2; j++)    
     RightArray[j] = a[mid + 1 + j];    
       
-    i = 0; /* initial index of first sub-array */  
-    j = 0; /* initial index of second sub-array */   
-    k = beg;  /* initial index of merged sub-array */  
+    int i = 0; /* initial index of first sub-array */  
+    int j = 0; /* initial index of second sub-array */   
+    int k = beg;  /* initial index of merged sub-array */  
       
     while (i < n1 && j < n2)    
     {    
@@ -70,7 +69,7 @@ void printArray(int a[], int n)
   
 int main()  
 {  
-    int a[] = { 12, 31, 25, 8, 32, 17, 40, 42 };  
+    int a[] = { 12, 22, 25, 8, 32, 17, 40, 42 };  
     int n = sizeof(a) / sizeof(a[0]);  
     printf("Before sorting array elements are - \n");  
     printArray(a, n);  

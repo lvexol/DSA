@@ -1,38 +1,43 @@
-
-#include <algorithm>
 #include <iostream>
 #include <vector>
 using namespace std;
 
-void bucketSort(float arr[], int n)
-{
-
-	vector<float> b[n];
-
-	for (int i = 0; i < n; i++) {
-
-		int bi = n * arr[i];
-		b[bi].push_back(arr[i]);
-	}
-
-	for (int i = 0; i < n; i++)
-		sort(b[i].begin(), b[i].end());
-
-	int index = 0;
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < b[i].size(); j++)
-			arr[index++] = b[i][j];
+int bucket(double a[],int n){
+    vector<double> b[n];
+    for(int i=0;i<n;i++){
+        int bi=n*i;
+        b[bi].push_back(a[i]);
+    }
+    for(int i=0;i<n;i++){
+        if(b[i].empty())
+            break;
+        int z=b[i].size();
+        for(int j=0;j<z-1;j++){
+            for(int k=j+1;k<z-1;k++){
+                if(b[j][k]>b[j][k+1]){
+                    swap(b[j][k],b[j][k+1]);
+                }
+            }
+        }
+    }
+    int index=0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<b[i].size();j++)
+            a[index++]=b[i][j];   
+}
 }
 
-int main()
-{
-	float arr[]
-		= { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };
-	int n = sizeof(arr) / sizeof(arr[0]);
-	bucketSort(arr, n);
-
-	cout << "Sorted array is \n";
-	for (int i = 0; i < n; i++)
-		cout << arr[i] << " ";
-	return 0;
+void main(){
+    int n;
+    cout<<"enter the number of elements: ";
+    cin>>n;
+    double a[n];
+    cout<<"enter the element "<<endl;
+    for(int i=0; i<n; i++){
+        cin>>a[i];
+    }
+    bucket(a,n);
+    for(int i=0; i<n; i++){
+        cout<<a[i]<<" ";
+    }
 }
