@@ -1,43 +1,59 @@
-#include <iostream>
-
+#include<iostream>
 using namespace std;
-
-struct node{
-    int data;
-    struct node* left_child;
-    struct node* right_child;
-};
-void print_tree(struct node* root){
-    int position;
-    int count=0;
-    struct node* temp=NULL;
-    temp=new node;
-    temp=root;
-    while(temp->left_child!=NULL){
-        count++;
-        temp=temp->left_child;
-    }
-    temp=root;
-    struct node* right=NULL;w
-    right=root->right_child;
-    struct node* left=NULL;
-    left=root->left_child;
-    for(int i=0; i<count; i++)
-        cout<<" "<<endl;
-    cout<<root->data<<endl;count--;
-    while(right->right_child!=NULL&&left->left_child!=NULL){
-        if(left->left_child==NULL&&right->left_child!=NULL)
-            left=right->left_child;
-        if(right->right_child==NULL&&left->right_child!=NULL)
-            right=left->right_child;
-        for(int i=0;i<count;i++)
-            cout<<" "<<endl;
-        count--;
-
-    }
+class node{
+    public:
+int data;
+node*left;
+node*right;
+node(int dat){
+    data=dat;
+    left=NULL;
+    right=NULL;
 }
-void insert_leaf(int data,struct node* root){
-    cout<<"Pick and enter the position to be inserte the data: "<<endl;
-    print_tree(root);
+};
+node* buildTree(node* root){
+    cout<<"enter data:";
+    int data;
+    cin>>data;
+    if(data==-1){
+        return NULL;
+    }
+    root=new node(data);
+    cout<<"enter data for inserting in left of " <<data<<endl;
+    root->left=buildTree(root->left);
+    cout<<"enter data for inserting in right of "<<data<<endl;
+    root->right=buildTree(root->right);
+    return root;
+}
+void inorder(node* root){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+void preorder(node* root){
+    if(root==NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+void postorder(node* root){
+    if(root==NULL){
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data<<" ";
+}
 
+int main(){
+    node *root=NULL;
+    root=buildTree(root);
+    inorder(root);
+    postorder(root);
+    preorder(root);
 }
