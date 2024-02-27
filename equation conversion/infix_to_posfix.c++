@@ -37,7 +37,11 @@ int main(){
             }
             else{
                 while(1>0){
-                    if(indux(z)==indux(each.top())){
+                    if(each.empty()){
+                        each.push(z);
+                        break;
+                    }
+                    else if(indux(z)==indux(each.top())){
                         if(indux(z)==3){
                             each.push(z);
                             break;
@@ -52,11 +56,7 @@ int main(){
                     else if(indux(z)>indux(each.top())){
                         each.push(z);
                         break;
-                    }
-                    else if(each.empty()){
-                        each.push(z);
-                        break;
-                    }
+                    }                    
                     else{
                         resl+=each.top();
                         each.pop();
